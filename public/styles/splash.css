@@ -10,5 +10,6 @@ body{
 }
 
 div.card-custom{
-    width: 480px;
+    box-shadow: rgba(0,0,0,0.5) 0 0 20px;
+    width: 500px;
 }
