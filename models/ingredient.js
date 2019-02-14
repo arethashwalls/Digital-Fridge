@@ -6,7 +6,8 @@ module.exports = (sequelize, DataTypes) => {
         },
         quantityOwned: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: false,
+            defaultValue: 0
         },
         quantityNeeded: {
             type: DataTypes.INTEGER,
