@@ -7,6 +7,8 @@ module.exports = (sequelize, DataTypes) => {
                 isAlphanumeric: true
             }
         }
+    }, {
+        freezeTableName: true
     });
     User.hasMany(models.Ingredient, {
         onDelete: "cascade"
