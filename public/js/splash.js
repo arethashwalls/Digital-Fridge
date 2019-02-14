@@ -9,7 +9,7 @@ $(document).ready(function() {
     var newUser = $("input#newUserName").val().trim();
     $("#dropdownMenu").append(`<option value="${newUser}">${newUser}</option>`);
     console.log("New user submitted!");
-    $("input#newUserName").empty();
+    $("input#newUserName").val("");
   });
 
   // Username Select
