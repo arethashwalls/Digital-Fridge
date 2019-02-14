@@ -1,11 +1,6 @@
 {
   "development": {
-    "username": "root",
-    "password": {
-      "use_env_variable": "DB_PASS"
-    },
-    "database": "exampledb",
-    "host": "localhost",
+    "use_env_variable": "LOCALDB",
     "dialect": "mysql"
   },
   "test": {
