@@ -1,11 +1,16 @@
 var db = require("../models");
 
-module.exports = function(app) {
+module.exports = function (app) {
   // Get all examples
-  app.get("/api/users", function(req, res) {
+  // app.post("/api/examples", function (req, res) {
+  //   db.Example.create(req.body).then(function (dbExample) {
+  //     res.json(dbExample);
+  //   });
+  // });
+  app.get("/api/users", function (req, res) {
     db.User.findAll({
       attributes: ["username"]
-    }).then(function(data) {
+    }).then(function (data) {
       res.json(data);
     });
   });
