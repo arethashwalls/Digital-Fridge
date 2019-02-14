@@ -10,7 +10,8 @@ module.exports = (sequelize, DataTypes) => {
         },
         quantityNeeded: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: false,
+            defaultValue: 0
         }
     });
 
