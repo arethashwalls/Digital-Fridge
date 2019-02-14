@@ -1,13 +1,26 @@
 module.exports = (sequelize, DataTypes) => {
-    var Example = sequelize.define("Example", {
+    var Ingredient = sequelize.define("Example", {
         name: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        quantity: {
+        quantityOwned: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        quantityNeeded: {
             type: DataTypes.INTEGER,
             allowNull: false
         }
     });
-    return Example;
+
+    Ingredient.associate = (models) => {
+        Ingredient.belongsTo(models.User, {
+          foreignKey: {
+            allowNull: false
+          }
+        });
+      };
+    
+    return Ingredient;
 };
