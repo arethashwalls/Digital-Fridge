@@ -8,8 +8,8 @@ module.exports = (sequelize, DataTypes) => {
             }
         }
     }, {
-            freezeTableName: true
-        });
+        freezeTableName: true
+    });
     User.associate = (models) => {
         User.hasMany(models.Ingredient, {
             onDelete: "cascade"
