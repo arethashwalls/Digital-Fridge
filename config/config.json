@@ -1,7 +1,9 @@
 {
   "development": {
     "username": "root",
-    "password": "brad5740",
+    "password": {
+      "use_env_variable": "DB_PASS"
+    },
     "database": "exampledb",
     "host": "localhost",
     "dialect": "mysql"

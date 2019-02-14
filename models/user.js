@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    var User = sequelize.define("Example", {
+    var User = sequelize.define("User", {
         username: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -8,10 +8,12 @@ module.exports = (sequelize, DataTypes) => {
             }
         }
     }, {
-        freezeTableName: true
-    });
-    User.hasMany(models.Ingredient, {
-        onDelete: "cascade"
-      });
+            freezeTableName: true
+        });
+    User.associate = (models) => {
+        User.hasMany(models.Ingredient, {
+            onDelete: "cascade"
+        });
+    }
     return User;
 };
