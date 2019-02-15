@@ -8,13 +8,16 @@ module.exports = function (app) {
     }).then(function (data) {
       res.json(data);
     });
-
+  });
+  app.get("/api/ingredients", function (req, res) {
     db.Ingredient.findAll({
       // include: [db.User]
     }).then(function (data) {
       res.json(data);
     });
   });
+
+
   // This code was checking to see if the right user was being assign to the ingredients
   //   db.Ingredient.findAll({
   //     include: [db.User]
