@@ -10,15 +10,15 @@ module.exports = (sequelize, DataTypes) => {
     }, {
         freezeTableName: true
     });
-    User.create({
-        username: "John",
-    });
-    User.create({
-        username: "Candi",
-    });
-    User.create({
-        username: "David",
-    });
+    // User.create({
+    //     username: "John",
+    // });
+    // User.create({
+    //     username: "Candi",
+    // });
+    // User.create({
+    //     username: "David",
+    // });
 
     User.associate = (models) => {
         User.hasMany(models.Ingredient, {
