@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Digital Fridge | Food Inventory Web Application</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css" integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="/styles/splash.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/js/bootstrap.min.js" integrity="sha384-7aThvCh9TypR7fIc2HV4O/nFMVCBwyIUKL8XCtKE+8xgCgl/PQGuFsvShjr74PBp" crossorigin="anonymous"></script>
+    <script src="/js/splash.js"></script>
+</head>
+<body>
+    <div id="mainContainer" class="container d-flex h-100">
+        <div class="card m-auto p-3 card-custom">
+            <br>
+            <h1 class="text-center">Digital Fridge</h1>
+            <br>
+            <p class="px-3">Welcome to Digital Fridge!</p>
+            <p class="px-3">If you a returning visitor, please select your username from the menu below, then click 'confirm'. If you're a new user, click the 'New User' button to set-up your account.</p>
+            <br>
+            <form class="px-3 pb-3">
+                <div class="form-group">
+                    <label for="dropdoqnMenu">Username:</label>
+                    <select id="dropdownMenu" name="dropdownMenu" class="w-100">
+                        <option value="" data-id="0">Find your username here!</option>
+                        {{#each usernames}}
+                        <option value="{{this.username}}" data-id="{{this.id}}">{{this.username}}</option>
+                        {{/each}}
+                    </select>
+                    <br>
+                    <br>
+                    <button type="button" id="loginBtn" class="btn btn-primary float-right ml-1">Confirm</button>
+                    <button type="button" id="newUserBtn" class="btn btn-primary float-right ml-1">New User</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="newUserModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header border-bottom-0">
+                    <h4 class="px-3">New User</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="px-3">Please enter your name in the field below, and click 'submit'. Your name will be added to the user list, and an inventory account will be made for you.</p>
+                    <br>
+                    <form class="px-3">
+                        <div class="form-group">
+                            <label for="newUserName">New Username:</label><br>
+                            <input type="text" name="newUserName" id="newUserName" placeholder="John Doe" class="px-2 w-100">
+                            <br>
+                            <br>
+                            <button type="button" id="newSubmitBtn" class="btn btn-primary float-right" data-dismiss="modal">Submit</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer border-top-0"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

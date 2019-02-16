@@ -1,6 +1,15 @@
 var db = require("../models");
 
-module.exports = function (app) {
+module.exports = function(app) {
+  app.get("/", function(req, res) {
+    db.User.findAll({ attribute: ["username"] }).then(function(data) {
+      var obj = {
+        usernames: data
+      };
+
+      res.render("login", obj);
+    });
+  });
   // Load index page
   // app.get("/", function(req, res) {
   //   db.Example.findAll({}).then(function(dbExamples) {
