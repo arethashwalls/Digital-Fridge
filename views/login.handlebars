@@ -25,9 +25,9 @@
                 <div class="form-group">
                     <label for="dropdoqnMenu">Username:</label>
                     <select id="dropdownMenu" name="dropdownMenu" class="w-100">
-                        <option value="">Find your username here!</option>
-                        {{#each user}}
-                        <option value="{{this.username}}">{{this.username}}</option>
+                        <option value="" data-id="0">Find your username here!</option>
+                        {{#each usernames}}
+                        <option value="{{this.username}}" data-id="{{this.id}}">{{this.username}}</option>
                         {{/each}}
                     </select>
                     <br>

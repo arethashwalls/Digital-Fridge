@@ -2,8 +2,12 @@ var db = require("../models");
 
 module.exports = function(app) {
   app.get("/", function(req, res) {
-    db.User.findAll({ attributes: ["username"] }).then(function(data) {
-      res.render("login", data);
+    db.User.findAll({ attribute: ["username"] }).then(function(data) {
+      var obj = {
+        usernames: data
+      };
+
+      res.render("login", obj);
     });
   });
   // Load index page
