@@ -1,11 +1,19 @@
 var db = require("../models");
 
-module.exports = function(app) {
+module.exports = function (app) {
   // Get all examples
-  app.get("/api/users", function(req, res) {
+  app.get("/api/users", function (req, res) {
     db.User.findAll({
       attributes: ["username"]
-    }).then(function(data) {
+    }).then(function (data) {
+      res.json(data);
+    });
+  });
+
+
+  // create route for the inventory via shopping list
+  app.post("/api/ingredients", function (req, res) {
+    db.Ingredient.create(req.body).then(function (data) {
       res.json(data);
     });
   });
