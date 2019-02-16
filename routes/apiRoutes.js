@@ -1,74 +1,61 @@
 var db = require("../models");
-
-module.exports = function(app) {
-  app.get("/api/users", function(req, res) {
+var Sequelize = require("sequelize");
+var Op = Sequelize.Op;
+module.exports = function (app) {
+  app.get("/api/users", function (req, res) {
     db.User.findAll({
       attributes: ["username"]
     }).then(function (data) {
       res.json(data);
     });
   });
-  // find all ingredients for all users
-  // app.get("/api/ingredients", function (req, res) {
-  //   db.Ingredient.findAll({
-  //     // include: [db.User]
-  //   }).then(function (data) {
-  //     res.json(data);
-  //   });
-  // });
+
 
   // find all ingredients for a certain user 
-  app.get("/api/ingredients", function (req, res) {
+  app.get("/api/:userid/ingredients", function (req, res) {
     db.Ingredient.findAll({
       where: {
-        userId: 2
+        userId: req.params.userid
       },
       include: [db.User]
     }).then(function (data) {
-      for (var i = 0; i < data.length; i++) {
-        console.log(
-          data[i].dataValues.name + " and user: " + data[i].dataValues.User.dataValues.username
-        );
-      }
+      res.json(data);
     });
   })
 
-  // This code was checking to see if the right user was being assign to the ingredients
-  //   db.Ingredient.findAll({
-  //     include: [db.User]
-  //   }).then(function (result) {
-  //     console.log(result[0].dataValues.User);
-  //   });
-  // });
+  app.get("/api/:userid/ingredients/shoppinglist", function (req, res) {
+    db.Ingredient.findAll({
+      where: {
+        userId: req.params.userid,
+        quantityNeeded: {
+          [Op.gt]: 0
+        }
+      },
+      include: [db.User]
+    }).then(function (data) {
+      res.json(data);
+    });
+  })
 
-  // // Create a new example
-  // app.post("/api/examples", function(req, res) {
-  //   db.Example.create(req.body).then(function(dbExample) {
-  //     res.json(dbExample);
-  //   });
-  // });
-
-
-  app.put("api/ingredients/owned/:id", function(req, res) {
-    db.Ingredient.update(
-      { quantityOwned: req.body.quantityOwned },
-      { where: { id: req.params.id } }
-    ).then(function(response) {
-      res.json(response);
+  app.post("/api/:userid/ingredients", function (req, res) {
+    console.log(req.params.userid)
+    db.Ingredient.create({
+      name: req.body.name,
+      quantityNeeded: req.body.quantityNeeded,
+      UserId: req.params.userid
+    }).then(function (data) {
+      res.json(data);
     });
   });
 
-  app.put("api/ingredients/needed/:id", function(req, res) {
-    db.Ingredient.update(
-      { quantityNeeded: req.body.quantityNeeded },
-      { where: { id: req.params.id } }
-    ).then(function(response) {
-      res.json(response);
-    });
-  });
-
-  app.delete("api/ingredients/:id", function(req, res) {
-    db.Ingredient.destroy({ where: { id: req.params.id } }).then(function(response) {
+  // check this route
+  app.delete("/api/:userid/ingredients/:ingredientid", function (req, res) {
+    console.log(req.params.ingredientid);
+    db.Ingredient.destroy({
+      where: {
+        name: 'pizza'
+      }
+    }).then(function (response) {
       res.json(response);
     });
   });
