@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Digital Fridge | Food Inventory Web Application</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css"
+    integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" media="screen" href="/styles/splash.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/js/bootstrap.min.js"
+    integrity="sha384-7aThvCh9TypR7fIc2HV4O/nFMVCBwyIUKL8XCtKE+8xgCgl/PQGuFsvShjr74PBp"
+    crossorigin="anonymous"></script>
+  {{!-- public\styles\styles.css --}}
+</head>
+
+<body>
+  <!-- start header -->
+  <header>
+    <div class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand"><span>DF</span></a>
+        </div>
+        <div class="navbar-collapse collapse ">
+          <ul class="nav navbar-nav welcome-style">
+            {{#if user}}
+            <li class="active"><a href="/">Home</a></li>
+            <li><a href="/inventoryI">Input</a></li>
+            <li><a href="/">Log Out</a></li>
+            <h4 class="hello">Hello, {{user.displayName}}</h4 {{/if}} {{msg}} </ul> </div> </div> </div> </header> <!--
+              End Header -->
+            <!-- Start of carousel -->
+            <div class="container">
+              <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                  <li data-target="#myCarousel" data-slide-to="1"></li>
+                  <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ol>
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+                  <div class="item active">
+                    <img src="" width="100%" alt="">
+                    <div class="flex-caption">
+                      <h3>Create</h3>
+                      <p>Explore your inventory It's that simple.</p>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <img src="" width="100%" alt="">
+                    <div class="flex-caption">
+                      <h3>Food</h3>
+                      <p>Put your skills to work, make it delicious!</p>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <img src="" width="100%" alt="">
+                    <div class="flex-caption">
+                      <h3>Digital Fridge</h3>
+                      <p>Be part of a app that will help you manage the food you need in check!.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- End of carousel -->
+            <!-- Second Header Section -->
+            <section class="callaction">
+              <div class="container">
+                <div class="row">
+                  <hr>
+                  <!-- Inputting Ingredients-->
+                  <div class="col-lg-6 col-lg-offset-3">
+                    <div class="big-cta">
+                      <div class="cta-text">
+                        <h2><span>Digital </span>Fridge</h2>
+                      </div>
+                      <form class="form-horizontal" method="POST" action="/add/" class="button-size">
+                        <fieldset>
+                          <legend class="text-center col-lg-12">Write Your Ingredients </legend>
+                          <br>
+                          <div class="form-group">
+                            <div class="col-lg-8 col-lg-offset-2">
+                              <textarea placeholder="Enter Items" type="text" name="body" maxlength="140" minlength="2"
+                                class="form-control" required></textarea>
+                              <br>
+                            </div>
+                            <div class="col-lg-4 col-lg-offset-4">
+                              <input placeholder="# Quantity" type="number" min='2' max='5' name="Limit"
+                                class="form-control input-styling" required>
+                            </div>
+                          </div>
+                          <div class="col-lg-4 col-lg-offset-4">
+                            <input placeholder="exp.date" type="number" type="text" maxlength="140" minlength="2"
+                              class="form-control input-styling" required>
+                          </div>
+                    </div>
+                    <div class="form-group">
+                      <center>
+                        <div class="col-lg-6 col-lg-offset-3">
+                          <button type="submit" class="btn btn-success">Create Items!</button>
+                        </div>
+                      </center>
+                    </div>
+                    </fieldset>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+
+            <!-- All Items Section -->
+            <section id="content">
+              <!-- For each post, create a div col-lg-3 -->
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="row">
+                      {{#each posts}}
+                      {{#unless capacity}}
+                      <div class="col-lg-3" id="postBOx">
+                        <center><img src="{{pictureUrl}}" height="50" width="50"></center>
+                        <center>
+                          <h6>Item name: {{displayName}}</h6>
+                        </center>
+                        <center>
+                          <h6>Item/Items: {{groupLimit}}</h6>
+                        </center>
+                        <center>
+                          <h6>Item/Items: {{exp}}date</h6>
+                        </center>
+                        <p>
+                          <form action="/post/join" method="POST" class="join">
+                            <input type="hidden" name="postId" value="{{this.id}}">
+                            <input type="hidden" name="groupLimit" value="{{this.groupLimit}}">
+                            <input type="hidden" name="capacity" value="false">
+                            <div class="box-bottom">
+                              <button type="submit" id="create" margin="20px" class="btn btn-success">Build a
+                                Resapi</button>
+                            </div>
+                          </form>
+                        </p>
+                        <div class="box">
+                          <div class="box-gray aligncenter">
+                            <div class="icon">
+                              {{body}}
+                              {{number}}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      {{/unless}}
+                      {{/each}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <footer>
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-3">
+                    <div class="widget">
+                      <h5 class="widgetheading">Get in touch with us!</h5>
+                      <address>
+                        <strong>Digital Fridge Inc.</strong><br>
+                        2019 W special st, Suite 501<br>
+                        Someplace 16425 Earth
+                      </address>
+                      <p><br>
+                        <i class="icon-envelope-alt"></i> digitalFrigeteam@gmail.com
+                      </p>
+                    </div>
+                  </div>
+                  <div class="col-lg-3">
+                    <div class="widget">
+                      <h5 class="widgetheading">Pages</h5>
+                      <ul class="link-list">
+                        <li><a href="/">Home</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div id="sub-footer">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col-lg-6">
+                          <div class="copyright">
+                            <p>&copy; digitalFrige. All right reserved.</p>
+                            <div class="credits" </div> </div> </div> <div class="col-lg-6">
+                              <ul class="social-network">
+                                <li><a target="_blank" href="facebook" data-placement="top" Twitter title="Facebook"><i
+                                      class="fa fa-facebook"></i></a></li>
+                                <li><a target="_blank" href="" data-placement="top" title="Twitter"><i
+                                      class="fa fa-twitter"></i></a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+            </footer>
+        </div>
+        <a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
+        <!-- Placed at the end of the document so the pages load faster -->
+
+        <script src="/assets/js/jquery.js"></script>
+        <script src="/assets/js/jquery.easing.1.3.js"></script>
+        <script src="/assets/js/bootstrap.min.js"></script>
+        <script src="/assets/js/google-code-prettify/prettify.js"></script>
+        <script src="/assets/js/jquery.flexslider.js"></script>
+        <script src="/assets/js/animate.js"></script>
+        <script src="/assets/js/custom.js"></script>
+        <script src="/assets/js/join.js"></script>
+
+</body>
+
+</html>
