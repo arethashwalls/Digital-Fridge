@@ -9,6 +9,13 @@ module.exports = function(app) {
       res.json(data);
     });
   });
+  app.post("/api/users", function (req, res) {
+    db.User.findOrCreate({
+      where: {username: req.body.username}
+    }).then(function (data) {
+      res.json(data)
+    })
+  });
 
   // find all ingredients for a certain user
   app.get("/api/:userid/ingredients", function(req, res) {
