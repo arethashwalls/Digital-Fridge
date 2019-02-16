@@ -14,7 +14,7 @@ module.exports = function (app) {
       res.json(data);
     });
   });
-  app.get("/api/inventoryI", function (req, res) {
+  app.get("/api/shoping", function (req, res) {
     db.User.findAll({
       attributes: ["user"]
     }).then(function (data) {
@@ -23,7 +23,7 @@ module.exports = function (app) {
   });
 
   // Create a new example
-  app.post("/api/examples", function (req, res) {
+  app.post("/api/", function (req, res) {
     db.ingredient.create(req.body).then(function (dbExample) {
       res.json(dbExample);
     });

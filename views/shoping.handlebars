@@ -18,7 +18,11 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/js/bootstrap.min.js"
     integrity="sha384-7aThvCh9TypR7fIc2HV4O/nFMVCBwyIUKL8XCtKE+8xgCgl/PQGuFsvShjr74PBp"
     crossorigin="anonymous"></script>
-  {{!-- public\styles\styles.css --}}
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="/js/index.js"></script>
+  <link rel="stylesheet" href="public\styles\styles.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -40,8 +44,8 @@
             <li class="active"><a href="/">Home</a></li>
             <li><a href="/inventoryI">Input</a></li>
             <li><a href="/">Log Out</a></li>
-            <h4 class="hello">Hello, {{user.displayName}}</h4 {{/if}} {{msg}} </ul> </div> </div> </div> </header> <!--
-              End Header -->
+            <!-- <h4 class="hello">Hello, {{user.displayName}}</h4 {{/if}} {{msg}} </ul> </div> </div> </div> </header> <!-- -->
+            End Header -->
             <!-- Start of carousel -->
             <div class="container">
               <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -214,17 +218,6 @@
                       </div>
             </footer>
         </div>
-        <a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
-        <!-- Placed at the end of the document so the pages load faster -->
-
-        <script src="/assets/js/jquery.js"></script>
-        <script src="/assets/js/jquery.easing.1.3.js"></script>
-        <script src="/assets/js/bootstrap.min.js"></script>
-        <script src="/assets/js/google-code-prettify/prettify.js"></script>
-        <script src="/assets/js/jquery.flexslider.js"></script>
-        <script src="/assets/js/animate.js"></script>
-        <script src="/assets/js/custom.js"></script>
-        <script src="/assets/js/join.js"></script>
 
 </body>
 

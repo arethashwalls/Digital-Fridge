@@ -284,3 +284,19 @@ font-size: 11px;
      -moz-border-radius: 0 0 2px 2px;
           border-radius: 0 0 2px 2px;
 }
+.carousel-inner img {
+  -webkit-filter: grayscale(90%);
+  filter: grayscale(90%); /* make all photos black and white */ 
+  width: 100%; /* Set width to 100% */
+  margin: auto;
+}
+
+.carousel-caption h3 {
+  color: #fff !important;
+}
+
+@media (max-width: 600px) {
+  .carousel-caption {
+    display: none; /* Hide the carousel text when the screen is less than 600 pixels wide */
+  }
+}
