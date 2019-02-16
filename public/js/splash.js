@@ -14,7 +14,7 @@ $(document).ready(function() {
 
   // Username Select
   $("#loginBtn").on("click", function() {
-    var userSelect = $("#dropdownMenu").val().trim();
-    console.log(userSelect);
+    var userSelect = $("#dropdownMenu option:selected").data("id");
+    window.location.href = "api/" + userSelect + "/ingredients/";
   });
 });
