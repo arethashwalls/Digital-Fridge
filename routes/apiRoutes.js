@@ -16,6 +16,24 @@ module.exports = function(app) {
   //   });
   // });
 
+  app.put("api/ingredients/owned/:id", function(req, res) {
+    db.Ingredient.update(
+      { quantityOwned: req.body.quantityOwned },
+      { where: { id: req.params.id } }
+    ).then(function(response) {
+      res.json(response);
+    });
+  });
+
+  app.put("api/ingredients/needed/:id", function(req, res) {
+    db.Ingredient.update(
+      { quantityNeeded: req.body.quantityNeeded },
+      { where: { id: req.params.id } }
+    ).then(function(response) {
+      res.json(response);
+    });
+  });
+
   app.delete("api/ingredients/:id", function(req, res) {
     db.Ingredient.destroy({ where: { id: req.params.id } }).then(function(response) {
       res.json(response);
