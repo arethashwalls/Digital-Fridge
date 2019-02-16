@@ -2,12 +2,21 @@ var db = require("../models");
 var Sequelize = require("sequelize");
 var Op = Sequelize.Op;
 module.exports = function (app) {
+
+  //'users' routes:
   app.get("/api/users", function (req, res) {
     db.User.findAll({
       attributes: ["username"]
     }).then(function (data) {
       res.json(data);
     });
+  });
+  app.post("/api/users", function (req, res) {
+    db.User.findOrCreate({
+      where: {username: req.body.username}
+    }).then(function (data) {
+      res.json(data)
+    })
   });
 
 
