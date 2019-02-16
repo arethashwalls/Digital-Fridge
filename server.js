@@ -3,6 +3,7 @@ var express = require("express");
 var exphbs = require("express-handlebars");
 
 var db = require("./models");
+var seeding = require("./migration/migration.js");
 
 var app = express();
 var PORT = process.env.PORT || 3000;
@@ -25,16 +26,17 @@ app.set("view engine", "handlebars");
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 
-var syncOptions = { force: false };
+var syncOptions = { force: true };
 
 // If running a test, set syncOptions.force to true
 // clearing the `testdb`
 if (process.env.NODE_ENV === "test") {
-  syncOptions.force = true;
+  syncOptions.force = false;
 }
 
 // Starting the server, syncing our models ------------------------------------/
 db.sequelize.sync(syncOptions).then(function() {
+  seeding();
   app.listen(PORT, function() {
     console.log(
       "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
