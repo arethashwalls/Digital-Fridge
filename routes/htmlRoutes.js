@@ -10,6 +10,10 @@ module.exports = function(app) {
       res.render("login", obj);
     });
   });
+
+  app.get("/shopping", function(req, res) {
+    res.render("shopping_list");
+  });
   // Load index page
   // app.get("/", function(req, res) {
   //   db.Example.findAll({}).then(function(dbExamples) {
