@@ -1,6 +1,6 @@
 var db = require("../models");
 
-module.exports = function (app) {
+module.exports = function(app) {
   // Load index page
   // app.get("/", function(req, res) {
   //   db.Example.findAll({}).then(function(dbExamples) {
@@ -19,7 +19,7 @@ module.exports = function (app) {
   //     });
   //   });
   // });
-  app.get("/", function (req, res) {
+  app.get("/", function(req, res) {
     res.render("shoping");
   });
   // // Render 404 page for any unmatched routes
@@ -27,4 +27,3 @@ module.exports = function (app) {
   //   res.render("404");
   // });
 };
-

@@ -1,38 +1,61 @@
 var db = require("../models");
-
-module.exports = function (app) {
-  // // Get all examples
-  // app.post("/api/examples", function (req, res) {
-  //   db.Example.create(req.body).then(function (dbExample) {
-  //     res.json(dbExample);
-  //   });
-  // });
-  app.get("/api/use", function (req, res) {
+var Sequelize = require("sequelize");
+var Op = Sequelize.Op;
+module.exports = function(app) {
+  app.get("/api/users", function(req, res) {
     db.User.findAll({
       attributes: ["username"]
-    }).then(function (data) {
-      res.json(data);
-    });
-  });
-  app.get("/api/shoping", function (req, res) {
-    db.User.findAll({
-      attributes: ["user"]
-    }).then(function (data) {
+    }).then(function(data) {
       res.json(data);
     });
   });
 
-  // Create a new example
-  app.post("/api/", function (req, res) {
-    db.Ingredient.create(req.body).then(function (dbExample) {
-      res.json(dbExample);
+  // find all ingredients for a certain user
+  app.get("/api/:userid/ingredients", function(req, res) {
+    db.Ingredient.findAll({
+      where: {
+        userId: req.params.userid
+      },
+      include: [db.User]
+    }).then(function(data) {
+      res.json(data);
     });
   });
 
-  // Delete an example by id
-  // app.delete("/api/examples/:id", function (req, res) {
-  //   db.Example.destroy({ where: { id: req.params.id } }).then(function (dbExample) {
-  //     res.json(dbExample);
-  //   });
-  // });
+  app.get("/api/:userid/ingredients/shoppinglist", function(req, res) {
+    db.Ingredient.findAll({
+      where: {
+        userId: req.params.userid,
+        quantityNeeded: {
+          [Op.gt]: 0
+        }
+      },
+      include: [db.User]
+    }).then(function(data) {
+      res.json(data);
+    });
+  });
+
+  app.post("/api/:userid/ingredients", function(req, res) {
+    console.log(req.params.userid);
+    db.Ingredient.create({
+      name: req.body.name,
+      quantityNeeded: req.body.quantityNeeded,
+      UserId: req.params.userid
+    }).then(function(data) {
+      res.json(data);
+    });
+  });
+
+  // check this route
+  app.delete("/api/:userid/ingredients/:ingredientid", function(req, res) {
+    console.log(req.params.ingredientid);
+    db.Ingredient.destroy({
+      where: {
+        name: "pizza"
+      }
+    }).then(function(response) {
+      res.json(response);
+    });
+  });
 };
