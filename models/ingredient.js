@@ -21,7 +21,8 @@ module.exports = (sequelize, DataTypes) => {
     Ingredient.associate = (models) => {
         Ingredient.belongsTo(models.User, {
             foreignKey: {
-                allowNull: false
+                allowNull: false,
+                onDelete: "cascade"
             }
         });
     };
