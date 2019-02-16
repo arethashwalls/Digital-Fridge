@@ -1,7 +1,6 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  // Get all examples
   app.get("/api/users", function(req, res) {
     db.User.findAll({
       attributes: ["username"]
@@ -17,10 +16,9 @@ module.exports = function(app) {
   //   });
   // });
 
-  // // Delete an example by id
-  // app.delete("/api/examples/:id", function(req, res) {
-  //   db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
-  //     res.json(dbExample);
-  //   });
-  // });
+  app.delete("api/ingredients/:id", function(req, res) {
+    db.Ingredient.destroy({ where: { id: req.params.id } }).then(function(response) {
+      res.json(response);
+    });
+  });
 };
