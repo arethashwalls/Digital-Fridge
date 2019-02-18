@@ -1,6 +1,7 @@
 var db = require("../models");
 
 module.exports = function(app) {
+  // Get list of users for login page
   app.get("/", function(req, res) {
     db.User.findAll({ attribute: ["username"] }).then(function(data) {
       var obj = {
@@ -14,6 +15,21 @@ module.exports = function(app) {
   app.get("/shopping", function(req, res) {
     res.render("shopping_list");
   });
+
+  // Renders list with ingredients
+  // app.get("/api/:userID/ingredients", function(req, res) {
+  //   db.Ingredients.findAll({
+  //     where: {userId: req.params.userID},
+  //     include: [db.User]
+  //   }).then(function(data) {
+  //     var obj = {
+  //       ingredients: data
+  //     };
+
+  //     res.render("shopping_list", obj);
+  //     console.log(obj);
+  //   });
+  // });
   // Load index page
   // app.get("/", function(req, res) {
   //   db.Example.findAll({}).then(function(dbExamples) {

@@ -27,7 +27,11 @@ module.exports = function(app) {
       },
       include: [db.User]
     }).then(function(data) {
-      res.json(data);
+      var obj = {
+        ingredients: data
+      };
+
+      res.render("shopping_list", obj);
     });
   });
 
