@@ -12,8 +12,17 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/shopping", function(req, res) {
-    res.render("shopping_list");
+  app.get("/api/:userid/shoppinglist", function(req, res) {
+    db.Ingredient.findAll({
+      where: { userId: req.params.userid },
+      include: [db.User]
+    }).then(function(data) {
+      var obj = {
+        ingredients: data
+      };
+
+      res.render("shopping_list", obj);
+    });
   });
 
   // Renders list with ingredients

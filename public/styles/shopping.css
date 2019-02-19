@@ -16,3 +16,7 @@ body{
 .item-name{
     text-transform: capitalize;
 }
+
+td.checked{
+    text-decoration: line-through;
+}
