@@ -15,7 +15,7 @@ const seeding = () => {
       db.Ingredient.create({
         name: "tomato",
         quantityOwned: 10,
-        quantityNeeded: 2,
+        quantityNeeded: 0,
         UserId: 1
       });
       db.Ingredient.create({
@@ -25,21 +25,45 @@ const seeding = () => {
         UserId: 1
       });
       db.Ingredient.create({
+        name: "onion",
+        quantityOwned: 0,
+        quantityNeeded: 1,
+        UserId: 1
+      });
+      db.Ingredient.create({
         name: "cookies",
         quantityOwned: 5,
-        quantityNeeded: 2,
+        quantityNeeded: 0,
+        UserId: 2
+      });
+      db.Ingredient.create({
+        name: "ice cream",
+        quantityOwned: 1,
+        quantityNeeded: 0,
         UserId: 2
       });
       db.Ingredient.create({
         name: "salmon",
-        quantityOwned: 2,
+        quantityOwned: 0,
         quantityNeeded: 1,
         UserId: 2
+      });
+      db.Ingredient.create({
+        name: "potato",
+        quantityOwned: 6,
+        quantityNeeded: 0,
+        UserId: 3
       });
       db.Ingredient.create({
         name: "milk",
         quantityOwned: 2,
         quantityNeeded: 0,
+        UserId: 3
+      });
+      db.Ingredient.create({
+        name: "beer",
+        quantityOwned: 0,
+        quantityNeeded: 6,
         UserId: 3
       });
     }
