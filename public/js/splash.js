@@ -14,8 +14,8 @@ $(document).ready(function () {
       },
       method: "POST",
       url: "api/users",
-      data: JSON.stringify({ username : newUser })
-    }).then(function () {
+      data: JSON.stringify({ username: newUser })
+    }).then(function() {
       console.log("New user submitted!");
       $("input#newUserName").val("");
     });
