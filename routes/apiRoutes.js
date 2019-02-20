@@ -9,12 +9,14 @@ module.exports = function(app) {
       res.json(data);
     });
   });
-  app.post("/api/users", function (req, res) {
+  app.post("/api/users", function(req, res) {
     db.User.findOrCreate({
-      where: {username: req.body.username}
-    }).then(function (data) {
-      res.json(data)
-    })
+      where: {
+        username: req.body.username
+      }
+    }).then(function(data) {
+      res.json(data);
+    });
   });
 
   // find all ingredients for a certain user
@@ -55,7 +57,24 @@ module.exports = function(app) {
     });
   });
 
-  // check this route
+  // update quantity owned
+  app.put("/api/:userid/ingredients", function(req, res) {
+    db.Ingredient.update(
+      {
+        quantityOwned: Sequelize.col("quantityNeeded"),
+        quantityNeeded: 0
+      },
+      {
+        where: {
+          id: req.body.id
+        }
+      }
+    ).then(function(data) {
+      res.json(data);
+    });
+  });
+
+  // delete route
   app.delete("/api/:userid/ingredients/:ingredientid", function(req, res) {
     console.log(req.params.ingredientid);
     db.Ingredient.destroy({
