@@ -10,6 +10,19 @@ module.exports = function(app) {
       res.render("login", obj);
     });
   });
+  app.get("/:userid/ingredients", function(req, res) {
+    db.Ingredient.findAll({
+      where: {
+        userId: req.params.userid
+      },
+      include: [db.User]
+    }).then(function(data) {
+      var obj = {
+        ingredient: data
+      };
+      res.render("inventory", obj);
+    });
+  });
   // Load index page
   // app.get("/", function(req, res) {
   //   db.Example.findAll({}).then(function(dbExamples) {
