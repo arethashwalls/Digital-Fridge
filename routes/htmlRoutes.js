@@ -1,4 +1,6 @@
 var db = require("../models");
+var Sequelize = require("sequelize");
+var Op = Sequelize.Op;
 
 module.exports = function(app) {
   app.get("/", function(req, res) {
@@ -13,7 +15,10 @@ module.exports = function(app) {
   app.get("/:userid/ingredients", function(req, res) {
     db.Ingredient.findAll({
       where: {
-        userId: req.params.userid
+        userId: req.params.userid,
+        quantityOwned: {
+          [Op.gt]: 0
+        }
       },
       include: [db.User]
     }).then(function(data) {
