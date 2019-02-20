@@ -56,7 +56,24 @@ module.exports = function(app) {
     });
   });
 
-  // check this route
+  // update quantity owned
+  app.put("/api/:userid/ingredients", function(req, res) {
+    db.Ingredient.update(
+      {
+        quantityOwned: Sequelize.col("quantityNeeded"),
+        quantityNeeded: 0
+      },
+      {
+        where: {
+          id: req.body.id
+        }
+      }
+    ).then(function(data) {
+      res.json(data);
+    });
+  });
+
+  // delete route
   app.delete("/api/:userid/ingredients/:ingredientid", function(req, res) {
     console.log(req.params.ingredientid);
     db.Ingredient.destroy({
