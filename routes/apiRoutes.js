@@ -21,7 +21,8 @@ module.exports = function(app) {
   app.get("/api/:userid/ingredients", function(req, res) {
     db.Ingredient.findAll({
       where: {
-        userId: req.params.userid
+        userId: req.params.userid,
+        quantityOwned: { [Op.gt]: 0 }
       },
       include: [db.User]
     }).then(function(data) {
