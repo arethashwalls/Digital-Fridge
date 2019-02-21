@@ -18,6 +18,14 @@ $(document).ready(function() {
     $("#addItemLink").on("click", function() {
         $("#addItemLink").css("display", "none");
         $("#addItem").toggleClass("expand", 250);
-        $("addItem").delay(250).toggleClass("container")
+        $("#addItemBody").delay(250).toggleClass("container");
+        $("#addItemBody").delay(250).fadeIn(400);
+    });
+
+    $("#cancelBtn").on("click", function() {
+        $("#addItemBody").toggleClass("container");
+        $("#addItemBody").fadeOut(400);
+        $("#addItemLink").css("display", "block");
+        $("#addItem").toggleClass("expand", 250);
     });
 });

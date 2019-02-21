@@ -25,14 +25,14 @@ div#addItem{
     background-color: #dc3545;
     border-radius: 50%;
     bottom: 0;
+    box-shadow: rgba(0,0,0,0.5) 0 0 20px;
     display: block;
     height: 72px;
+    margin: 0 2em 2em 0;
     overflow: hidden;
     position: fixed;
     right: 0;
     width: 72px;
-    box-shadow: rgba(0,0,0,0.5) 0 0 20px;
-    margin: 0 2em 2em 0;
     z-index: 100;
 }
 
@@ -48,14 +48,15 @@ div#addItem a#addItemLink{
 }
 
 div#addItem a#addItemLink i{
-    user-select: none;
-    -webkit-user-select: none;
     -moz-user-select: none;
+    -webkit-user-select: none;
+    cursor: pointer;
+    display: block;
     font-size: 48px;
     line-height: 72px;
     text-align: center;
+    user-select: none;
     width: 72px;
-    display: block;
 }
 
 div#addItem.expand{
