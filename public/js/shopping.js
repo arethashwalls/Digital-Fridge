@@ -62,6 +62,23 @@ $(document).ready(function() {
     window.location.href = `./inventory`;
   });
 
+  $(".removeItemBtn").on("click", function() {
+    var userIdNum = $("#goToInventory").data("id");
+    var itemID = $(this).data("id");
+
+    $.ajax({
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "DELETE",
+      url: `/api/${userIdNum}/ingredients`,
+      data: JSON.stringify({ id: itemID })
+    }).then(function() {
+      console.log("Item deleted!");
+      location.reload();
+    });
+  });
+
   $("#addItemLink").on("click", function() {
       $("#addItemLink").css("display", "none");
       $("#addItem").toggleClass("expand", 250);

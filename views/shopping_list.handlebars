@@ -28,7 +28,7 @@
                 <td scope="row" style="text-align: center;">{{this.id}}</td>
                 <td scope="row" class="item-name">{{this.name}}</td>
                 <td scope="row" style="text-align: center;">{{this.quantityNeeded}}</td>
-                <td scope="row" style="text-align: center;"><button type="button" class="btn btn-sm btn-danger" style="text-align: center; line-height: 1;"><i class="fa fa-times"></i></button></td>
+                <td scope="row" style="text-align: center;"><button type="button" class="btn btn-sm btn-danger removeItemBtn" style="text-align: center; line-height: 1;" data-id="{{this.id}}"><i class="fa fa-times"></i></button></td>
             </tr>
             {{/each}}
         </tbody>
