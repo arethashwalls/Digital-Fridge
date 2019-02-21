@@ -1,0 +1,25 @@
+<form id="sms-form" data-userid="{{userid}}">
+    <input type="text" id="recipient-number" required pattern="^\(?[0-9]{3}\)?.?[0-9]{3}.?[0-9]{4}$"/>
+    <button type="submit" />Send Text</button>
+</form>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
+<script>
+    $("#sms-form").on("submit", function(event) {
+        event.preventDefault();
+        $.ajax({
+            headers: {
+                "Content-Type": "application/json"
+            },
+            method: "POST",
+            url: "/api/sms",
+            data: JSON.stringify({
+                recipient: $("#recipient-number").val().trim(),
+                userid: $(this).data("userid")
+            })
+        });
+    });
+</script>
