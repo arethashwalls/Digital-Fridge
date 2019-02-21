@@ -59,7 +59,7 @@ $(document).ready(function() {
   });
 
   $("#goToInventory").on("click", function() {
-    window.location.href = `../ingredients`;
+    window.location.href = `../inventory`;
   });
 
   $("#addItemLink").on("click", function() {
