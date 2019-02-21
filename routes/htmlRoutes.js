@@ -3,25 +3,18 @@ var Sequelize = require("sequelize");
 var Op = Sequelize.Op;
 
 module.exports = function(app) {
+  // Get list of users for login page
   app.get("/", function(req, res) {
+    //Query User for all usernames:
     db.User.findAll({ attribute: ["username"] }).then(function(data) {
       var obj = {
         usernames: data
       };
-
       res.render("login", obj);
     });
   });
-  // Load index page
-  // app.get("/", function(req, res) {
-  //   db.Example.findAll({}).then(function(dbExamples) {
-  //     res.render("index", {
-  //       msg: "Welcome!",
-  //       examples: dbExamples
-  //     });
-  //   });
-  // });
 
+<<<<<<< HEAD
   // // Load example page and pass in an example by id
   // app.get("/example/:id", function(req, res) {
   //   db.Example.findOne({ where: { id: req.params.id } }).then(function(dbExample) {
@@ -32,6 +25,31 @@ module.exports = function(app) {
   // });
   app.get("/:userid/ingredients", function(req, res) {
     db.Ingredient.findAll({
+=======
+  //Get a list of all needed ingredients for shopping list page:
+  app.get("/:userid/shoppinglist", function(req, res) {
+    db.Ingredient.findAll({
+      //Query Ingredient for all ingredients with quantityNeeded above 0:
+      where: {
+        userId: req.params.userid,
+        quantityNeeded: {
+          [Op.gt]: 0
+        }
+      },
+      include: [db.User]
+    }).then(function(data) {
+      var obj = {
+        ingredients: data
+      };
+      res.render("shopping_list", obj);
+    });
+  });
+
+  //Get all currently owned ingredients for inventory page:
+  app.get("/:userid/inventory", function(req, res) {
+    db.Ingredient.findAll({
+      //Query Ingredient for all ingredients with quantityOwned above 0:
+>>>>>>> master
       where: {
         userId: req.params.userid,
         quantityOwned: {
@@ -45,9 +63,13 @@ module.exports = function(app) {
       };
       res.render("inventory", obj);
     });
+<<<<<<< HEAD
+=======
   });
-  // // Render 404 page for any unmatched routes
-  // app.get("*", function(req, res) {
-  //   res.render("404");
-  // });
+
+  // Render 404 page for any unmatched routes
+  app.get("*", function(req, res) {
+    res.render("404");
+>>>>>>> master
+  });
 };
