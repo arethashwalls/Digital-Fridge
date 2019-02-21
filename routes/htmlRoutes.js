@@ -27,7 +27,8 @@ module.exports = function(app) {
       include: [db.User]
     }).then(function(data) {
       var obj = {
-        ingredients: data
+        ingredients: data,
+        userid: req.params.userid
       };
       res.render("shopping_list", obj);
     });
