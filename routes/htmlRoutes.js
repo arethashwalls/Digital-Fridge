@@ -14,6 +14,18 @@ module.exports = function(app) {
     });
   });
 
+<<<<<<< HEAD
+  // // Load example page and pass in an example by id
+  // app.get("/example/:id", function(req, res) {
+  //   db.Example.findOne({ where: { id: req.params.id } }).then(function(dbExample) {
+  //     res.render("example", {
+  //       example: dbExample
+  //     });
+  //   });
+  // });
+  app.get("/:userid/ingredients", function(req, res) {
+    db.Ingredient.findAll({
+=======
   //Get a list of all needed ingredients for shopping list page:
   app.get("/:userid/shoppinglist", function(req, res) {
     db.Ingredient.findAll({
@@ -38,6 +50,7 @@ module.exports = function(app) {
   app.get("/:userid/inventory", function(req, res) {
     db.Ingredient.findAll({
       //Query Ingredient for all ingredients with quantityOwned above 0:
+>>>>>>> master
       where: {
         userId: req.params.userid,
         quantityOwned: {
@@ -51,10 +64,13 @@ module.exports = function(app) {
       };
       res.render("inventory", obj);
     });
+<<<<<<< HEAD
+=======
   });
 
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
     res.render("404");
+>>>>>>> master
   });
 };
