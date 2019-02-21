@@ -18,6 +18,16 @@ $(document).ready(function() {
     $(`tr[data-id="${parent}"]`)
       .children()
       .toggleClass("checked");
+    $.ajax({
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "PUT",
+      url: `/api/${$(this).data("userid")}/ingredients`,
+      data: JSON.stringify({ id: $(this).data("itemid") })
+    }).then(function() {
+      console.log("Update successful!");
+    });
   });
 
   $("#goToInventory").on("click", function() {
