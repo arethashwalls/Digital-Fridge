@@ -3,6 +3,30 @@ $(document).ready(function() {
     window.location.href = "../../../";
   });
 
+  $("#addItemBtn").on("click", function() {
+    var userIdNum = $("#goToInventory").data("id");
+
+    console.log(userIdNum);
+
+    var newItem = {
+      name: $("#newItemName").val().trim(),
+      quantityNeeded: $("#newItemQuantity").val().trim(),
+      UserId: userIdNum
+    };
+
+    $.ajax({
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "POST",
+      url: `/api/${userIdNum}/ingredients`,
+      data: JSON.stringify(newItem)
+    }).then(function() {
+      console.log("New Item Added!")
+      location.reload();
+    });
+  });
+
   $(".shoppingCheck").on("click", function() {
     var parent = $(this)
       .parent()
