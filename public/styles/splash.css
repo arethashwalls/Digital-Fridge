@@ -21,3 +21,7 @@ body{
 td.checked{
     text-decoration: line-through;
 }
+.card-custom{
+    box-shadow: rgba(0,0,0,0.5) 0px 0px 20px;
+    width: 500px;
+}
