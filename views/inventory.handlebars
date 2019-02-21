@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Digital Fridge | Food Inventory Web Application</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css"
+    integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" media="screen" href="/styles/splash.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/js/bootstrap.min.js"
+    integrity="sha384-7aThvCh9TypR7fIc2HV4O/nFMVCBwyIUKL8XCtKE+8xgCgl/PQGuFsvShjr74PBp"
+    crossorigin="anonymous"></script>
+<script src="/js/custom.js"></script>
+</head>
+
+<body>
+  <div class="navbar bg-black w-100">
+    <a class="navbar-brand font-weight-bold text-white">Digital Fridge</a>
+    <span class="m-0 p-0">
+      <button type="button" id="goToShoppinglist" class="btn btn-sm btn-primary mr-2"
+        data-id="{{ingredients.[0].dataValues.UserId}}"><i class="fa fa-list mr-2"></i>Go to Shopping List</button>
+      <button type="button" id="logOutBtn" class="btn btn-sm btn-danger"><i class="fa fa-sign-out mr-2"></i>Log
+        Out</button>
+    </span>
+  </div>
+  <div class="container">
+    <h1 class="text-white mt-5 mb-0"> Inventory List for {{ingredient.[0].User.dataValues.username}}</h1>
+    <p class="text-white">The items included are listed below.</p>
+    <br>
+    <table id="ingredientTable" class="bg-white overflow-hidden rounded table table-bordered table-responsive-xs">
+      <thead>
+        <tr>
+          <th scope="col" style="text-align: center; width: 1em;">ID</th>
+          <th scope="col"style="text-align: center;">Item Name</th>
+          <th scope="col"style="text-align: center; width: 15%;">Quantity Owned</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each ingredient}}
+        <tr>
+          <td>{{ id }}</td>
+          <td>{{ name }}</td>
+          <td style="text-align: center;">{{ quantityOwned }}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+  </div>
+
+
+</body>
+
+</html>

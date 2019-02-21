@@ -1,0 +1,55 @@
+body{
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ94MFNDBVOFfDE723vDF4-Z86C6CkltWv3LxI8ZvV_J5MM5HRJ");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+table, thead{
+  background-color: darkred;
+  color: white;
+  opacity: .75;
+  margin-top:20;
+}
+.modal-body{
+  background-color: darkred;
+
+}
+
+
+
+
+#matchImg{
+  background-color: darkred
+}
+
+.jumbotron{
+  background-color: darkred;
+  color: white;
+  opacity: .75;
+  margin-top:20;
+
+
+}
+
+#submit{
+  background: darkred;
+
+}
+
+#jumbo_h2{
+  color: white;
+
+}
+
+.btn-primary{
+  color: white;
+
+
+
+}
+.panel-title{
+  color: darkred;
+  
+}
+
