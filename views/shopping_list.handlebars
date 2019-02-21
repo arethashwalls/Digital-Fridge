@@ -23,7 +23,7 @@
         <tbody>
             {{#each ingredients}}
             <tr data-id="{{this.id}}">
-                <td scope="row" style="text-align: center;"><input type="checkbox" aria-label="Checkbox for Inventory Item" class="shoppingCheck"></td>
+                <td scope="row" style="text-align: center;"><input type="checkbox" data-userid="{{../userid}}" data-itemid="{{this.id}}" aria-label="Checkbox for Inventory Item" class="shoppingCheck"></td>
                 <td scope="row" style="text-align: center;">{{this.id}}</td>
                 <td scope="row" class="item-name">{{this.name}}</td>
                 <td scope="row" style="text-align: center;">{{this.quantityNeeded}}</td>
