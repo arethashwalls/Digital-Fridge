@@ -20,3 +20,57 @@ body{
 td.checked{
     text-decoration: line-through;
 }
+
+div#addItem{
+    background-color: #dc3545;
+    border-radius: 50%;
+    bottom: 0;
+    display: block;
+    height: 72px;
+    overflow: hidden;
+    position: fixed;
+    right: 0;
+    width: 72px;
+    box-shadow: rgba(0,0,0,0.5) 0 0 20px;
+    margin: 0 2em 2em 0;
+    z-index: 100;
+}
+
+div#addItem a#addItemLink{
+    bottom: 0;
+    display: block;
+    left: 0;
+    margin: auto;
+    position: absolute;
+    right: 0;
+    top: 0;
+    text-decoration: none;
+}
+
+div#addItem a#addItemLink i{
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    font-size: 48px;
+    line-height: 72px;
+    text-align: center;
+    width: 72px;
+    display: block;
+}
+
+div#addItem.expand{
+    background-color: #fff;
+    border-radius: 0px;
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    margin: 0px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+}
+
+a#addItemLink.hide{
+    display: none;
+}
