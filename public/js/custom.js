@@ -1,8 +1,8 @@
-$(document).ready(function() {
-  $("#logOutBtn").on("click", function() {
-    window.location.href = "../../../";
+$(document).ready(function () {
+  $("#logOutBtn").on("click", function () {
+   window.location.href = "../../../";
   });
-  $("#goToShopping").on("click", function() {
-    window.location.href = "./shoppinglist";
+  $("#goToShoppinglist").on("click", function () {
+   window.location.href = "./shoppinglist";
   });
-});
+ });
