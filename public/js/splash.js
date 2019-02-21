@@ -6,7 +6,9 @@ $(document).ready(function() {
 
   // New User Submit
   $("#newSubmitBtn").on("click", function() {
-    var newUser = $("input#newUserName").val().trim();
+    var newUser = $("input#newUserName")
+      .val()
+      .trim();
     $("#dropdownMenu").append(`<option value="${newUser}">${newUser}</option>`);
     $.ajax({
       headers: {
@@ -28,7 +30,7 @@ $(document).ready(function() {
     if (userSelect === 0) {
       return false;
     } else {
-      window.location.href = "api/" + userSelect + "/ingredients/";
+      window.location.href = userSelect + "/inventory";
     }
   });
 });
