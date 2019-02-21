@@ -9,17 +9,23 @@ $(document).ready(function() {
     var newUser = $("input#newUserName")
       .val()
       .trim();
-    $("#dropdownMenu").append(`<option value="${newUser}">${newUser}</option>`);
     $.ajax({
       headers: {
         "Content-Type": "application/json"
       },
       method: "POST",
-      url: "api/users",
-      data: JSON.stringify({ username: newUser })
-    }).then(function() {
-      console.log("New user submitted!");
-      $("input#newUserName").val("");
+      url: "/api/users",
+      data: JSON.stringify({ username: newUser }),
+      success: function(data) {
+        console.log(data);
+        console.log("New user submitted!");
+        $("input#newUserName").val("");
+        $("#dropdownMenu").append(
+          `<option value="${newUser}" data-id="${
+            data[0].id
+          }">${newUser}</option>`
+        );
+      }
     });
   });
 
