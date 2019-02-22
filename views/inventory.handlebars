@@ -38,7 +38,7 @@
     <table id="ingredientTable" class="bg-white overflow-hidden rounded table table-bordered table-responsive-xs">
       <thead>
         <tr>
-          <th scope="col" style="text-align: center; width: 1em;">ID</th>
+          {{!-- <th scope="col" style="text-align: center; width: 1em;">ID</th> --}}
           <th scope="col"style="text-align: center;">Item Name</th>
           <th scope="col"style="text-align: center; width: 15%;">Quantity Owned</th>
         </tr>
@@ -46,7 +46,7 @@
       <tbody>
         {{#each ingredient}}
         <tr>
-          <td>{{ id }}</td>
+          {{!-- <td>{{ id }}</td> --}}
           <td>{{ name }}</td>
           <td style="text-align: center;">{{ quantityOwned }}</td>
         </tr>
