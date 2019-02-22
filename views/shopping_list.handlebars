@@ -16,7 +16,7 @@
     <table id="ingredientTable" class="bg-white overflow-hidden rounded table table-bordered table-responsive-xs">
         <thead class="bg-light">
             <th scope="col" style="text-align: center; width: 1em;"><i class="fa fa-check"></i></th>
-            <th scope="col" style="text-align: center; width: 1em;">ID</th>
+            {{!-- <th scope="col" style="text-align: center; width: 1em;">ID</th> --}}
             <th scope="col" style="text-align: center;">Item Name</th>
             <th scope="col" style="text-align: center; width: 15%;">Quantity Needed</th>
             <th scope="col" style="text-align: center; width: 1em;"><i class="fa fa-times"></i></th>
@@ -25,7 +25,7 @@
             {{#each ingredients}}
             <tr data-id="{{this.id}}">
                 <td scope="row" style="text-align: center;"><input type="checkbox" data-userid="{{../userid}}" data-itemid="{{this.id}}" aria-label="Checkbox for Inventory Item" class="shoppingCheck"></td>
-                <td scope="row" style="text-align: center;">{{this.id}}</td>
+                {{!-- <td scope="row" style="text-align: center;">{{this.id}}</td> --}}
                 <td scope="row" class="item-name">{{this.name}}</td>
                 <td scope="row" style="text-align: center;">{{this.quantityNeeded}}</td>
                 <td scope="row" style="text-align: center;"><button type="button" class="btn btn-sm btn-danger removeItemBtn" style="text-align: center; line-height: 1;" data-id="{{this.id}}"><i class="fa fa-times"></i></button></td>
