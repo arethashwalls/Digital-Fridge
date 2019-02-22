@@ -50,7 +50,8 @@ module.exports = function(app) {
   app.post("/api/:userid/ingredients", function(req, res) {
     db.Ingredient.findOne({
       where: {
-        name: req.body.name
+        name: req.body.name,
+        UserId: req.params.userid
       }
     }).then(function(data) {
       if (data) {
