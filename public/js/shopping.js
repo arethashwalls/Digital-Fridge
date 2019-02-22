@@ -22,7 +22,7 @@ $(document).ready(function() {
       url: `/api/${userIdNum}/ingredients`,
       data: JSON.stringify(newItem)
     }).then(function() {
-      console.log("New Item Added!")
+      console.log("New item added!");
       location.reload();
     });
   });
@@ -47,13 +47,12 @@ $(document).ready(function() {
 
     $.ajax({
       headers: {
-
         "Content-Type": "application/json"
       },
       method: "PUT",
       url: `/api/${$(this).data("userid")}/ingredients`,
       data: JSON.stringify({ id: $(this).data("itemid") })
-    }).then(function() {
+    }).done(function() {
       console.log("Update successful!");
     });
   });
@@ -73,7 +72,7 @@ $(document).ready(function() {
       method: "DELETE",
       url: `/api/${userIdNum}/ingredients/${itemID}`,
       data: JSON.stringify({ id: itemID })
-    }).then(function() {
+    }).done(function() {
       console.log("Item deleted!");
       location.reload();
     });
