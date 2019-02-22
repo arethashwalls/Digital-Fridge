@@ -33,6 +33,19 @@
             {{/each}}
         </tbody>
     </table>
+    <br>
+    <div class="card">
+        <div class="card-header">Send List via SMS</div>
+        <div class="card-body">
+            <form>
+                <div class="form-group">
+                    <label for="smsNum">Phone Number</label>
+                    <input type="text" class="form-control" id="smsNum" placeholder="5555555555" required pattern="^\(?[0-9]{3}\)?.?[0-9]{3}.?[0-9]{4}$"/>
+                </div>
+                <button type="submit" class="btn btn-primary" id="sendSMS">Send List via SMS</button>
+            </form>
+        </div>
+    </div>
 </div>
 <div id="addItem">
     <a id="addItemLink">
@@ -50,10 +63,6 @@
             <div class="form-group">
                 <label for="newItemQuantity">Number of Items</label>
                 <input type="number" class="form-control" id="newItemQuantity" aria-describedby="newItemQuantity" placeholder="0" required>
-            </div>
-            <div class="form-group">
-                <label for="newItemPhone">Number for SMS Verification</label>
-                <input type="text" class="form-control" id="newItemPhone" required pattern="^\(?[0-9]{3}\)?.?[0-9]{3}.?[0-9]{4}$"/>
             </div>
             <br>
             <span>

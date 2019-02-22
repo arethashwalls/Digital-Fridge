@@ -76,7 +76,6 @@ $(document).ready(function() {
   // Add New Item
   $("#addItemBtn").on("click", function() {
     var userIdNum = $("#goToInventory").data("id");
-    var userPhone = $("#newItemPhone").val().trim();
     var newItem = {
       name: $("#newItemName").val().trim(),
       quantityNeeded: $("#newItemQuantity").val().trim(),
@@ -95,8 +94,13 @@ $(document).ready(function() {
       console.log("New item added!");
       location.reload();
     });
+  });
 
-    // POST request for SMS message
+  // Send List via SMS
+  $("#sendSMS").on("submit", function(e) {
+    e.preventDefault();
+    var userIdNum = $("#goToInventory").data("id");
+    console.log(userIdNum);
     $.ajax({
       headers: {
         "Content-Type": "application/json"
@@ -104,7 +108,7 @@ $(document).ready(function() {
       method: "POST",
       url: "/api/sms",
       data: JSON.stringify({
-        recipient: userPhone,
+        recipient: $("#smsNum").val().trim(),
         userid: userIdNum
       })
     });
