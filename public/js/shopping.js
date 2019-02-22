@@ -100,7 +100,6 @@ $(document).ready(function() {
   $("#sendSMS").on("submit", function(e) {
     e.preventDefault();
     var userIdNum = $("#goToInventory").data("id");
-    console.log(userIdNum);
     $.ajax({
       headers: {
         "Content-Type": "application/json"
