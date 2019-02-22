@@ -72,17 +72,17 @@ module.exports = function(app) {
 
   // update quantity owned
   app.put("/api/:userid/ingredients", function(req, res) {
-    db.Ingredient.update(
-      {
-        quantityOwned: Sequelize.col("quantityNeeded"),
-        quantityNeeded: 0
-      },
-      {
-        where: {
-          id: req.body.id
-        }
+    db.Ingredient.findOne({
+      where: {
+        id: req.body.id
       }
-    ).then(function(data) {
+    }).then(function(data) {
+      const currentOwned = parseInt(data.quantityOwned);
+      const currentNeeded = parseInt(data.quantityNeeded);
+      data.update({
+        quantityOwned: currentOwned + currentNeeded,
+        quantityNeeded: 0
+      });
       res.json(data);
     });
   });
