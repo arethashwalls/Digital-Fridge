@@ -71,7 +71,7 @@ $(document).ready(function() {
         "Content-Type": "application/json"
       },
       method: "DELETE",
-      url: `/api/${userIdNum}/ingredients`,
+      url: `/api/${userIdNum}/ingredients/${itemID}`,
       data: JSON.stringify({ id: itemID })
     }).then(function() {
       console.log("Item deleted!");

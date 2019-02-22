@@ -59,7 +59,7 @@ module.exports = function(app) {
             parseInt(data.quantityNeeded) + parseInt(req.body.quantityNeeded)
         });
       } else {
-        Ingredient.create({
+        db.Ingredient.create({
           name: req.body.name,
           quantityNeeded: req.body.quantityNeeded,
           UserId: req.params.userid
