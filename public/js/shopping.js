@@ -1,32 +1,15 @@
 $(document).ready(function() {
+  // Go to Inventory Button
+  $("#goToInventory").on("click", function() {
+    window.location.href = `./inventory`;
+  });
+
+  // Log Out Button
   $("#logOutBtn").on("click", function() {
     window.location.href = "../../../";
   });
 
-  $("#addItemBtn").on("click", function() {
-    var userIdNum = $("#goToInventory").data("id");
-
-    console.log(userIdNum);
-
-    var newItem = {
-      name: $("#newItemName").val().trim(),
-      quantityNeeded: $("#newItemQuantity").val().trim(),
-      UserId: userIdNum
-    };
-
-    $.ajax({
-      headers: {
-        "Content-Type": "application/json"
-      },
-      method: "POST",
-      url: `/api/${userIdNum}/ingredients`,
-      data: JSON.stringify(newItem)
-    }).then(function() {
-      console.log("New item added!");
-      location.reload();
-    });
-  });
-
+  // Checkbox Next to Each Item
   $(".shoppingCheck").on("click", function() {
     var parent = $(this)
       .parent()
@@ -57,10 +40,7 @@ $(document).ready(function() {
     });
   });
 
-  $("#goToInventory").on("click", function() {
-    window.location.href = `./inventory`;
-  });
-
+  // Delete Item Button
   $(".removeItemBtn").on("click", function() {
     var userIdNum = $("#goToInventory").data("id");
     var itemID = $(this).data("id");
@@ -78,6 +58,7 @@ $(document).ready(function() {
     });
   });
 
+  // New Item Menu
   $("#addItemLink").on("click", function() {
       $("#addItemLink").css("display", "none");
       $("#addItem").toggleClass("expand", 250);
@@ -90,5 +71,30 @@ $(document).ready(function() {
       $("#addItemBody").fadeOut(400);
       $("#addItemLink").css("display", "block");
       $("#addItem").toggleClass("expand", 250);
+  });
+
+  // Add New Item
+  $("#addItemBtn").on("click", function() {
+    var userIdNum = $("#goToInventory").data("id");
+
+    console.log(userIdNum);
+
+    var newItem = {
+      name: $("#newItemName").val().trim(),
+      quantityNeeded: $("#newItemQuantity").val().trim(),
+      UserId: userIdNum
+    };
+
+    $.ajax({
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "POST",
+      url: `/api/${userIdNum}/ingredients`,
+      data: JSON.stringify(newItem)
+    }).then(function() {
+      console.log("New item added!");
+      location.reload();
+    });
   });
 });
