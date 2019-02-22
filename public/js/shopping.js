@@ -92,7 +92,9 @@ $(document).ready(function() {
       data: JSON.stringify(newItem)
     }).then(function() {
       console.log("New item added!");
-      location.reload();
+      setTimeout(()=>{
+        location.reload();
+      }, 100)
     });
   });
 
