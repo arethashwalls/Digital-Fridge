@@ -48,12 +48,23 @@ module.exports = function(app) {
   });
 
   app.post("/api/:userid/ingredients", function(req, res) {
-    console.log(req.params.userid);
-    db.Ingredient.create({
-      name: req.body.name,
-      quantityNeeded: req.body.quantityNeeded,
-      UserId: req.params.userid
+    db.Ingredient.findOne({
+      where: {
+        name: req.body.name
+      }
     }).then(function(data) {
+      if (data) {
+        data.update({
+          quantityNeeded:
+            parseInt(data.quantityNeeded) + parseInt(req.body.quantityNeeded)
+        });
+      } else {
+        Ingredient.create({
+          name: req.body.name,
+          quantityNeeded: req.body.quantityNeeded,
+          UserId: req.params.userid
+        });
+      }
       res.json(data);
     });
   });
