@@ -2,7 +2,7 @@
 <link rel="stylesheet" type="text/css" media="screen" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <script src="/js/shopping.js"></script>
-<div class="navbar bg-black w-100">
+<div class="navbar bg-black w-100" style="z-index: 999;">
     <a class="navbar-brand font-weight-bold text-white" href="../../" ><img src="/images/banner.png" alt="Digital Fridge" height="50px"/></a>
     <span class="m-0 p-0">
         <button type="button" id="goToInventory" class="btn btn-sm btn-primary mr-2" data-id="{{userid}}"><i class="fa fa-list mr-2"></i>Go to Inventory</button>
@@ -28,7 +28,7 @@
                 <td scope="row" style="text-align: center;">{{this.id}}</td>
                 <td scope="row" class="item-name">{{this.name}}</td>
                 <td scope="row" style="text-align: center;">{{this.quantityNeeded}}</td>
-                <td scope="row" style="text-align: center;"><button type="button" class="btn btn-sm btn-danger" style="text-align: center; line-height: 1;"><i class="fa fa-times"></i></button></td>
+                <td scope="row" style="text-align: center;"><button type="button" class="btn btn-sm btn-danger removeItemBtn" style="text-align: center; line-height: 1;" data-id="{{this.id}}"><i class="fa fa-times"></i></button></td>
             </tr>
             {{/each}}
         </tbody>
