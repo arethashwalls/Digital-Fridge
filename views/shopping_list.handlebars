@@ -51,6 +51,10 @@
                 <label for="newItemQuantity">Number of Items</label>
                 <input type="number" class="form-control" id="newItemQuantity" aria-describedby="newItemQuantity" placeholder="0" required>
             </div>
+            <div class="form-group">
+                <label for="newItemPhone">Number for SMS Verification</label>
+                <input type="text" class="form-control" id="newItemPhone" required pattern="^\(?[0-9]{3}\)?.?[0-9]{3}.?[0-9]{4}$"/>
+            </div>
             <br>
             <span>
                 <button id="addItemBtn" type="button" class="btn btn-primary float-right"><i class="fa fa-plus mr-2"></i>Add New Item</button>

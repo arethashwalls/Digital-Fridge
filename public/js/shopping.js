@@ -60,31 +60,30 @@ $(document).ready(function() {
 
   // New Item Menu
   $("#addItemLink").on("click", function() {
-      $("#addItemLink").css("display", "none");
-      $("#addItem").toggleClass("expand", 250);
-      $("#addItemBody").delay(250).toggleClass("container");
-      $("#addItemBody").delay(250).fadeIn(400);
+    $("#addItemLink").css("display", "none");
+    $("#addItem").toggleClass("expand", 250);
+    $("#addItemBody").delay(250).toggleClass("container");
+    $("#addItemBody").delay(250).fadeIn(400);
   });
 
   $("#cancelBtn").on("click", function() {
-      $("#addItemBody").toggleClass("container");
-      $("#addItemBody").fadeOut(400);
-      $("#addItemLink").css("display", "block");
-      $("#addItem").toggleClass("expand", 250);
+    $("#addItemBody").toggleClass("container");
+    $("#addItemBody").fadeOut(400);
+    $("#addItemLink").css("display", "block");
+    $("#addItem").toggleClass("expand", 250);
   });
 
   // Add New Item
   $("#addItemBtn").on("click", function() {
     var userIdNum = $("#goToInventory").data("id");
-
-    console.log(userIdNum);
-
+    var userPhone = $("#newItemPhone").val().trim();
     var newItem = {
       name: $("#newItemName").val().trim(),
       quantityNeeded: $("#newItemQuantity").val().trim(),
       UserId: userIdNum
     };
 
+    // POST request for new item
     $.ajax({
       headers: {
         "Content-Type": "application/json"
@@ -95,6 +94,19 @@ $(document).ready(function() {
     }).then(function() {
       console.log("New item added!");
       location.reload();
+    });
+
+    // POST request for SMS message
+    $.ajax({
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "POST",
+      url: "/api/sms",
+      data: JSON.stringify({
+        recipient: userPhone,
+        userid: userIdNum
+      })
     });
   });
 });
