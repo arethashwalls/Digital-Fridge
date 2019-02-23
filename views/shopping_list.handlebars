@@ -2,21 +2,21 @@
 <link rel="stylesheet" type="text/css" media="screen" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <script src="/js/shopping.js"></script>
-<div class="navbar bg-black w-100">
+<div class="navbar bg-black w-100" style="z-index: 999;">
     <a class="navbar-brand font-weight-bold text-white" href="../../" ><img src="/images/banner.png" alt="Digital Fridge" height="50px"/></a>
     <span class="m-0 p-0">
-        <button type="button" id="goToInventory" class="btn btn-sm btn-primary mr-2" data-id="{{ingredients.[0].dataValues.UserId}}"><i class="fa fa-list mr-2"></i>Go to Inventory</button>
+        <button type="button" id="goToInventory" class="btn btn-sm btn-primary mr-2" data-id="{{userid}}"><i class="fa fa-list mr-2"></i>Go to Inventory</button>
         <button type="button" id="logOutBtn" class="btn btn-sm btn-danger"><i class="fa fa-sign-out mr-2"></i>Log Out</button>
     </span>
 </div>
 <div class="container">
-    <h2 class="text-white mt-5 mb-3">Shopping List for {{ingredients.[0].User.dataValues.username}}</h2>
+    <h2 class="text-white mt-5 mb-3">Shopping List for {{username}}</h2>
     <p class="text-white">The items included in the shopping list can be found below. Please click the checkbox to mark an items as bought, or click the 'X' button to delete the item. You can also use the form at the bottom to add new items.</p>
     <br>
     <table id="ingredientTable" class="bg-white overflow-hidden rounded table table-bordered table-responsive-xs">
         <thead class="bg-light">
             <th scope="col" style="text-align: center; width: 1em;"><i class="fa fa-check"></i></th>
-            <th scope="col" style="text-align: center; width: 1em;">ID</th>
+            {{!-- <th scope="col" style="text-align: center; width: 1em;">ID</th> --}}
             <th scope="col" style="text-align: center;">Item Name</th>
             <th scope="col" style="text-align: center; width: 15%;">Quantity Needed</th>
             <th scope="col" style="text-align: center; width: 1em;"><i class="fa fa-times"></i></th>
@@ -25,14 +25,27 @@
             {{#each ingredients}}
             <tr data-id="{{this.id}}">
                 <td scope="row" style="text-align: center;"><input type="checkbox" data-userid="{{../userid}}" data-itemid="{{this.id}}" aria-label="Checkbox for Inventory Item" class="shoppingCheck"></td>
-                <td scope="row" style="text-align: center;">{{this.id}}</td>
+                {{!-- <td scope="row" style="text-align: center;">{{this.id}}</td> --}}
                 <td scope="row" class="item-name">{{this.name}}</td>
                 <td scope="row" style="text-align: center;">{{this.quantityNeeded}}</td>
-                <td scope="row" style="text-align: center;"><button type="button" class="btn btn-sm btn-danger" style="text-align: center; line-height: 1;"><i class="fa fa-times"></i></button></td>
+                <td scope="row" style="text-align: center;"><button type="button" class="btn btn-sm btn-danger removeItemBtn" style="text-align: center; line-height: 1;" data-id="{{this.id}}"><i class="fa fa-times"></i></button></td>
             </tr>
             {{/each}}
         </tbody>
     </table>
+    <br>
+    <div class="card">
+        <div class="card-header">Send List via SMS</div>
+        <div class="card-body">
+            <form id="sms-form" data-userid="{{userid}}">
+                <div class="form-group">
+                    <label for="smsNum">Phone Number</label>
+                    <input type="text" class="form-control" id="recipient-number" placeholder="555-555-5555" required pattern="^\(?[0-9]{3}\)?.?[0-9]{3}.?[0-9]{4}$"/>
+                </div>
+                <button type="submit" class="btn btn-primary" id="sendSMS">Send List via SMS</button>
+            </form>
+        </div>
+    </div>
 </div>
 <div id="addItem">
     <a id="addItemLink">

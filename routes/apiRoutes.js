@@ -48,39 +48,50 @@ module.exports = function(app) {
   });
 
   app.post("/api/:userid/ingredients", function(req, res) {
-    console.log(req.params.userid);
-    db.Ingredient.create({
-      name: req.body.name,
-      quantityNeeded: req.body.quantityNeeded,
-      UserId: req.params.userid
+    db.Ingredient.findOne({
+      where: {
+        name: req.body.name,
+        UserId: req.params.userid
+      }
     }).then(function(data) {
+      if (data) {
+        data.update({
+          quantityNeeded:
+            parseInt(data.quantityNeeded) + parseInt(req.body.quantityNeeded)
+        });
+      } else {
+        db.Ingredient.create({
+          name: req.body.name,
+          quantityNeeded: req.body.quantityNeeded,
+          UserId: req.params.userid
+        });
+      }
       res.json(data);
     });
   });
 
   // update quantity owned
   app.put("/api/:userid/ingredients", function(req, res) {
-    db.Ingredient.update(
-      {
-        quantityOwned: Sequelize.col("quantityNeeded"),
-        quantityNeeded: 0
-      },
-      {
-        where: {
-          id: req.body.id
-        }
+    db.Ingredient.findOne({
+      where: {
+        id: req.body.id
       }
-    ).then(function(data) {
+    }).then(function(data) {
+      const currentOwned = parseInt(data.quantityOwned);
+      const currentNeeded = parseInt(data.quantityNeeded);
+      data.update({
+        quantityOwned: currentOwned + currentNeeded,
+        quantityNeeded: 0
+      });
       res.json(data);
     });
   });
 
   // delete route
   app.delete("/api/:userid/ingredients/:ingredientid", function(req, res) {
-    // console.log(req.params.ingredientid);
     db.Ingredient.destroy({
       where: {
-        name: "pizza"
+        id: req.params.ingredientid
       }
     }).then(function(response) {
       res.json(response);

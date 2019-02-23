@@ -30,7 +30,14 @@ module.exports = function(app) {
         ingredients: data,
         userid: req.params.userid
       };
-      res.render("shopping_list", obj);
+      db.User.findOne({
+        where: {
+          id: req.params.userid
+        }
+      }).then(function(moreData) {
+        obj.username = moreData.dataValues.username;
+        res.render("shopping_list", obj);
+      });
     });
   });
 
@@ -47,9 +54,18 @@ module.exports = function(app) {
       include: [db.User]
     }).then(function(data) {
       var obj = {
-        ingredient: data
+        ingredient: data,
+        userid: req.params.userid
       };
-      res.render("inventory", obj);
+      db.User.findOne({
+        where: {
+          id: req.params.userid
+        }
+      }).then(function(moreData) {
+        console.log(moreData);
+        obj.username = moreData.dataValues.username;
+        res.render("inventory", obj);
+      });
     });
   });
 
