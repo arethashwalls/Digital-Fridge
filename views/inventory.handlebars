@@ -36,19 +36,21 @@
     <p class="text-white">The items included are listed below.</p>
     <br>
     <table id="ingredientTable" class="bg-white overflow-hidden rounded table table-bordered table-responsive-xs">
-      <thead>
-        <tr>
-          {{!-- <th scope="col" style="text-align: center; width: 1em;">ID</th> --}}
+    <thead>
+    <tbody>
+        <tr data-id="{{this.id}}"></tr>
+          <th scope="col" style="text-align: center; width: 1em;">ID</th>
           <th scope="col"style="text-align: center;">Item Name</th>
           <th scope="col"style="text-align: center; width: 15%;">Quantity Owned</th>
         </tr>
       </thead>
       <tbody>
         {{#each ingredient}}
-        <tr>
-          {{!-- <td>{{ id }}</td> --}}
+        <tr data-id="{{this.id}}">
+          <td>{{ id }}</td>
           <td>{{ name }}</td>
           <td style="text-align: center;">{{ quantityOwned }}</td>
+        <td scope="row" style="text-align: center;width: 1em;"><button type="button" class="btn btn-sm btn-danger deleteBtn" style="text-align: center; line-height: 1;" data-id="{{this.id}}"><i class="fa fa-times"></i></button></td>
         </tr>
         {{/each}}
       </tbody>
