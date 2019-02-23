@@ -6,7 +6,7 @@ $(document).ready(function() {
   $("#addItemBtn").on("click", function() {
     var userIdNum = $("#goToInventory").data("id");
 
-    console.log(userIdNum);
+    // console.log(userIdNum);
 
     var newItem = {
       name: $("#newItemName").val().trim(),

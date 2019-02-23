@@ -77,7 +77,7 @@ module.exports = function(app) {
 
   // delete route
   app.delete("/api/:userid/ingredients/:ingredientid", function(req, res) {
-    console.log(req.params.ingredientid);
+    // console.log(req.params.ingredientid);
     db.Ingredient.destroy({
       where: {
         name: "pizza"
