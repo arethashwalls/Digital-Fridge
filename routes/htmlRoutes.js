@@ -3,6 +3,7 @@ var Sequelize = require("sequelize");
 var Op = Sequelize.Op;
 
 module.exports = function(app) {
+// GET routes for displaying views: **********************//
   // Get list of users for login page
   app.get("/", function(req, res) {
     //Query User for all usernames:
@@ -13,7 +14,6 @@ module.exports = function(app) {
       res.render("login", obj);
     });
   });
-
   //Get a list of all needed ingredients for shopping list page:
   app.get("/:userid/shoppinglist", function(req, res) {
     db.Ingredient.findAll({
@@ -40,7 +40,6 @@ module.exports = function(app) {
       });
     });
   });
-
   //Get all currently owned ingredients for inventory page:
   app.get("/:userid/inventory", function(req, res) {
     db.Ingredient.findAll({
@@ -68,7 +67,6 @@ module.exports = function(app) {
       });
     });
   });
-
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
     res.render("404");
