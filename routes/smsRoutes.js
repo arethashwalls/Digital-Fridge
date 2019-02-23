@@ -1,3 +1,4 @@
+//Import needed values for Twilio:
 const accountSid = process.env.SMS_SID;
 const authToken = process.env.SMS_TOKEN;
 const client = require("twilio")(accountSid, authToken);
@@ -7,6 +8,7 @@ const Op = Sequelize.Op;
 
 module.exports = function(app) {
   app.post("/api/sms", function(req, res) {
+    //Find the given user's shopping list by their ID:
     db.Ingredient.findAll({
       where: {
         userId: req.body.userid,
@@ -16,12 +18,15 @@ module.exports = function(app) {
       },
       attributes: ["name", "quantityNeeded"]
     }).then(function(data) {
+      //Save the received values:
       const ingredients = data.map(datum => datum.dataValues);
+      //Create the SMS body string:
       let textBody = "\nYour DigitalFridge Shopping List:\n";
       ingredients.forEach(function(ingredient) {
         textBody += `\n* ${ingredient.quantityNeeded} ${ingredient.name}(s)`;
       });
       textBody += "\n\nHappy Shopping! 😋";
+      //Call the Twilio API to send a new message:
       client.messages
         .create({
           body: textBody,
@@ -33,10 +38,5 @@ module.exports = function(app) {
         });
       res.json(data);
     });
-  });
-
-  //SMS ROUTE FOR TESTING -- DELETE LATER
-  app.get("/:userid/smsform", function(req, res) {
-    res.render("testsms", { userid: req.params.userid });
   });
 };

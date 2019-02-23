@@ -70,7 +70,7 @@ $(document).ready(function() {
       headers: {
         "Content-Type": "application/json"
       },
-      method: "DELETE",
+      method: "PUT",
       url: `/api/${userIdNum}/ingredients/${itemID}`,
       data: JSON.stringify({ id: itemID })
     }).then(function() {
