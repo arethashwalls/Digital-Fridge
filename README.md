@@ -20,8 +20,8 @@
   * [`migration.js`](/migration/migration.js) holds our Sequelize seeding data.
 * `models`
   * [`index.js`](/models/index.js) serves both models to other files that need them.
-  * [`ingredient.js`](/models/ingredient.js) models our User table.
-  * [`user.js`](/models/user.js) models our Ingredient table.
+  * [`ingredient.js`](/models/ingredient.js) models our Ingredient table.
+  * [`user.js`](/models/user.js) models our User table.
 * `public/assets` contains all of our static code, including:
   * `images`
   * `js`
