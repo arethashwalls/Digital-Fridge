@@ -4,10 +4,10 @@ body{
     background: linear-gradient(#0575E6 0%, #021B79 100%);
     background-attachment: fixed;
     background-size: cover;
-    height: 100vh;
+    height: 100%;
     margin: 0;
     padding: 0;
-    width: 100vw;
+    width: 100%;
 }
 
 .bg-black{
@@ -64,13 +64,13 @@ div#addItem.expand{
     background-color: #fff;
     border-radius: 0px;
     bottom: 0;
-    height: 100%;
+    height: 100vh;
     left: 0;
     margin: 0px;
-    position: absolute;
+    position: fixed;
     right: 0;
     top: 0;
-    width: 100%;
+    width: 100vw;
 }
 
 a#addItemLink.hide{

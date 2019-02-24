@@ -2,14 +2,15 @@
 <link rel="stylesheet" type="text/css" media="screen" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <script src="/js/shopping.js"></script>
-<div class="navbar bg-black w-100" style="z-index: 999;">
-    <a class="navbar-brand font-weight-bold text-white" href="../../" ><img src="/images/banner.png" alt="Digital Fridge" height="50px"/></a>
-    <span class="m-0 p-0">
+<div class="navbar bg-black w-100 fixed-top" style="z-index: 999;">
+    <a class="navbar-brand mx-auto mx-sm-0" href="../../" ><img src="/images/banner.png" alt="Digital Fridge" height="50px"/></a>
+    <span class="mx-auto mx-sm-0 p-0">
         <button type="button" id="goToInventory" class="btn btn-sm btn-primary mr-2" data-id="{{userid}}"><i class="fa fa-list mr-2"></i>Go to Inventory</button>
         <button type="button" id="logOutBtn" class="btn btn-sm btn-danger"><i class="fa fa-sign-out mr-2"></i>Log Out</button>
     </span>
 </div>
-<div class="container">
+<br>
+<div class="container mb-5" style="margin-top: 100px">
     <h2 class="text-white mt-5 mb-3">Shopping List for {{username}}</h2>
     <br>
     <table id="ingredientTable" class="bg-white overflow-hidden rounded table table-bordered table-responsive-xs">
@@ -51,6 +52,7 @@
         <i class="fa fa-plus text-white"></i>
     </a>
     <div id="addItemBody" style="display: none;">
+        <br class="d-sm-none">
         <h2 class="mb-3" style="margin-top: 100px;">Add a New Item</h2>
         <br>
         <form>
@@ -63,9 +65,9 @@
                 <input type="number" class="form-control" id="newItemQuantity" aria-describedby="newItemQuantity" placeholder="0" required>
             </div>
             <br>
-            <span>
-                <button id="addItemBtn" type="button" class="btn btn-primary float-right"><i class="fa fa-plus mr-2"></i>Add New Item</button>
-                <button id="cancelBtn" type="button" class="btn btn-danger float-right mr-2"><i class="fa fa-times mr-2"></i>Cancel New Item</button>
+            <span class="text-center">
+                <button id="addItemBtn" type="button" class="btn btn-primary float-sm-right"><i class="fa fa-plus mr-2"></i>Add New Item</button>
+                <button id="cancelBtn" type="button" class="btn btn-danger float-sm-right mr-sm-2"><i class="fa fa-times mr-2"></i>Cancel New Item</button>
             </span>
         </form>
     </div>
